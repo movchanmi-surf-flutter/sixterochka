@@ -38,13 +38,18 @@ class ProductFilter {
       var categoryMap = {category: []};
       var subCatMaps = [];
       for (final subCat in subCategories) {
-        var subCatMap = {
-          subCat: products
-              .where((e) => e.subcategoryName == subCat)
-              .toList()
-              .getProducts()
-        };
-        subCatMaps.add(subCatMap);
+        final productList = products
+            .where((e) => e.subcategoryName == subCat)
+            .toList()
+            .getProducts();
+        if(productList.isNotEmpty) {
+          final subCatMap = {
+            subCat: productList
+          };
+          subCatMaps.add(subCatMap);
+        }else{
+          continue;
+        }
       }
       categoryMap[category] = subCatMaps;
       data.add(categoryMap);

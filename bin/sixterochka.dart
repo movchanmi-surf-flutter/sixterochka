@@ -39,7 +39,7 @@ class ProductFilter {
       var subCatMaps = [];
       for (final subCat in subCategories) {
         final productList = products
-            .where((e) => e.subcategoryName == subCat)
+            .where((e) => e.subcategoryName == subCat&&e.categoryName==category)
             .toList()
             .getProducts();
         if(productList.isNotEmpty) {
